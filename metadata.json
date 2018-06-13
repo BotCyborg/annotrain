@@ -1,8 +1,4 @@
 {
-    "datasets": [
-        "a",
-        "b",
-        "c"
-    ],
-    "id_gen": 72
+    "data_root": "alldata",
+    "id_gen": 73
 }
