@@ -14,6 +14,13 @@ class Annotation:
         self.created_at = created_at #timestamp
         self.numfile = numfile
     
+    def add_property(self,name=None,tag=None,desc=None,comment=None):
+        self.name = AC(self.name,name) #usergiven name
+        self.tag = AC(self.tag,tag) #user provided tag
+        self.desc = AC(self.desc,desc) #auto generated description
+        self.comment  = AC(self.comment, comment) #users comment
+        
+        
     def get_json_dict(self):
         #annotation_id_list = [x.ID for x in self.annotation_object_list]
         td = {
@@ -22,7 +29,7 @@ class Annotation:
             "address":self.address,
             "dataset_ID": self.dataset_ID,
             "tag":self.tag,
-            "description": self.desc,
+            "desc": self.desc,
             "comment":self.comment,
             "created_at":str(self.created_at),
             "numfile":self.numfile
