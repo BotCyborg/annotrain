@@ -107,4 +107,9 @@ venv.bak/
 alldata/
 dummy-data-sets/ 
 .vscode/
+
+# R studio metafile
 .Rhistory
+
+# Personal sandboxs
+sandbox.py

@@ -4,43 +4,42 @@ import sys
 import random
 import argparse
 import shutil
+import uuid
+import datetime
 
-from idgen import IDGenerator
-data_root = "alldata"
-
-md = {} #the meta_data dictionary loaded from medatada.json
-
+from workspace import WorkSpace
 
 
+
+
+
+#uuid4 promises unique id for next approx(3600) years. Fingers crossed!
+
+
+'''
 def save_session(dd,id_generator,file_name):
-        dd["id_gen"] = id_generator.int_val()
-        parsed = json.loads(json.dumps(dd)) #for indentation
-        json.dump(parsed, open(file_name,"w"),indent=4, sort_keys=True)
+        #dd["id_gen"] = id_generator.int_val()
+        #parsed = json.loads(json.dumps(dd)) #for indentation
+        json.dump(dd, open(file_name,"w"),indent=4, sort_keys=True)
+'''
+
 
 if __name__ == "__main__":
-    id_generator  = None
-    if not os.path.exists(data_root):
-        os.makedirs(data_root)
-    file_name = "metadata.json"
-    if os.path.isfile("metadata.json") :
-        with open(file_name) as fp:
-            md = json.load(fp)
-            ld_idgen = int(md["id_gen"])
-            #print (id_gen+3)
-            id_generator = IDGenerator(ld_idgen)
+    ws = WorkSpace()
 
-    else:
-        id_generator = IDGenerator(0)
+    d1 = ws.create_dataset("dummy-data-sets/data/d1","tanvir")
+    
+    d2 = ws.create_dataset("dummy-data-sets/data/d2","sambit")
+    a1 = ws.create_annotation("dummy-data-sets/a/a1","atan1")
+    
+    a2 = ws.create_annotation("dummy-data-sets/a/a2","asam")
+    a3 = ws.create_annotation("dummy-data-sets/a/a1","atan2")
+    
+    ws.link(d1,a1)
+ 
+    ws.link(d2,a2)
+    ws.link(d1,a3)
+    ws.save()
+   
 
-    if os.path.exists("dummy-data-sets/data/d1"):
-        dst = data_root+"/"+id_generator.get(prefix="dd",postfix="")
-        shutil.copytree( "dummy-data-sets/data/d1",dst)
-    '''
-    with open(file_name) as fp:
-            md = json.load(fp)
-            md["data_root"] = "alldata"
-            parsed = json.loads(json.dumps(md)) #for indentation
-            json.dump(parsed, open(file_name,"w"),indent=4, sort_keys=True)
-    '''
-    save_session(md,id_generator,file_name)
-    #print (id_generator.get("shuru","shesh"))
+    print("Done")
