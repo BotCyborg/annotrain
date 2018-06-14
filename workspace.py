@@ -125,7 +125,7 @@ class WorkSpace:
             
         else:
             self.data_all[ds.ID] = ds
-            print ("ds added",ds.ID)
+            #print ("ds added",ds.ID)
     
     def add_annotation(self,an):
         if an.ID in self.anno_all:
