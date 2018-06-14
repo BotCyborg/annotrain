@@ -1,9 +1,11 @@
 import shutil
 import json
 import os
+import datetime
 from dataset import Dataset
 from annotation import Annotation
 from model import Model
+
 
 
 from config import *
@@ -16,6 +18,39 @@ class WorkSpace:
         self.anno_all = {}
         self.model_all = {}
     
+
+    def load(self,config_file=WORKSPACE_CONFIG_FILE):
+        
+        #workspace json dictionary
+        wjd = None
+        with open(config_file) as fp:
+            wjd = json.load(fp)
+        
+        DATA_ROOT_DIR = wjd["DATA_ROOT_DIR"]
+        self.load_data_all(wjd)
+        self.load_anno_all(wjd)
+
+    
+    def load_anno_all(self,wjd):
+        for aID, aset in wjd["anno_all"].items():
+            a = Annotation(aID,name=aset['name'],address=aset['address'],tag=aset['tag'],
+                desc=aset["description"],comment=aset["comment"],numfile=aset["numfile"],
+                created_at=datetime_parse(  aset["created_at"])
+                )
+            a.add_dataset_ID(aset["dataset_ID"])
+            self.add_annotation(a)
+
+    def load_data_all(self, wjd):
+        for dID, dset in wjd["data_all"].items():
+            d = Dataset(dID,name=dset['name'],address=dset['address'],tag=dset['tag'],
+                desc=dset["description"],comment=dset["comment"],numfile=dset["numfile"],
+                created_at=datetime_parse(  dset["created_at"])
+                )
+            #pl = 
+            for aID in dset["annotation_list"]:
+                d.add_annotation_ID(aID)
+            self.add_dataset(d)
+
     def link(self,dID,aID):
         self.data_all[dID].add_annotation_ID(aID)
         self.anno_all[aID].add_dataset_ID(dID)
@@ -30,6 +65,7 @@ class WorkSpace:
         for aID, a in self.anno_all.items():
             r[aID] = a.get_json_dict()
         return r
+
 
     def save(self):
         wjd = {}

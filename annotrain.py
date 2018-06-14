@@ -26,7 +26,8 @@ def save_session(dd,id_generator,file_name):
 
 if __name__ == "__main__":
     ws = WorkSpace()
-
+    ws.load()
+    '''
     d1 = ws.create_dataset("dummy-data-sets/data/d1","tanvir")
     
     d2 = ws.create_dataset("dummy-data-sets/data/d2","sambit")
@@ -39,7 +40,9 @@ if __name__ == "__main__":
  
     ws.link(d2,a2)
     ws.link(d1,a3)
+    
     ws.save()
-   
-
+    '''
+    for dID, d in ws.data_all.items():
+        print(d.get_json_dict())
     print("Done")
