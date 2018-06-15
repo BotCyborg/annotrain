@@ -61,6 +61,10 @@ Later we might train a model `mA-car-bikes`. But we also want to keep track of t
 
 One can see that for this simple example we have already created quite a few data sets and models. And things are getting difficult to keep track of which is what.
 
-Annotrain provides a version tracking system that keeps track of all these different versions and their interrelations. 
+Annotrain provides a generic version tracking system that helps keep track of all these different versions and their interrelations.
+
+Annotrain usages are not restricted to the above example and can support arbitrarily complex use-cases.
+
+For further details of the inner workings of the annotrain system please see the (*yet non existent*) github wiki.
 
 
