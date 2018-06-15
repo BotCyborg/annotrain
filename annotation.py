@@ -14,6 +14,7 @@ class Annotation:
         self.created_at = created_at #timestamp
         self.numfile = numfile
     
+    # add user editable properties to the class. 
     def add_property(self,name=None,tag=None,desc=None,comment=None):
         self.name = AC(self.name,name) #usergiven name
         self.tag = AC(self.tag,tag) #user provided tag
@@ -36,6 +37,7 @@ class Annotation:
         }
         return td
 
+    # copy the actual files to the root database. 
     def populate(self,src):
         if self.address:
             if os.path.exists(self.address) :
