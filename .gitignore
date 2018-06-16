@@ -112,5 +112,5 @@ dummy-data-sets/
 .Rhistory
 
 # Personal sandboxs
-sandbox.py
+# sandbox.py
 *.json
