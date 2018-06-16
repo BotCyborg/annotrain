@@ -10,6 +10,11 @@ For more details see the general description below.
 
 The annotrain system requires python3.
 
+The annotrain system require cmd2 module  
+Install cmd2 using pip3: 
+
+    pip3 install cmd2
+
 ### Running Annotrain Shell: ats
 
 To run the annotrain shell -> open a terminal -> brows to the annotrain folder -> type command:

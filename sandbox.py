@@ -3,6 +3,70 @@ import datetime
 import json
 from dateutil.parser import parse as datetime_parse
 from helperfunctions import *
+
+
+class apt :
+    def __init__(self):
+        print( "start")
+
+    b = "middle"
+    
+    def test(self):
+        print (self.b)
+        print("test")
+
+a = apt()
+
+a.test()
+'''
+from cmd2 import Cmd 
+
+class REPL(Cmd):
+    prompt = "life> "
+    intro = "Welcome to the real world!"
+
+    def __init__(self):
+        Cmd.__init__(self)
+
+
+if __name__ == '__main__':
+    app = REPL()
+    app.cmdloop()
+
+'''
+
+'''
+
+Padding and aligning strings
+
+By default values are formatted to take up only as many characters as needed to represent the content. It is however also possible to define that a value should be padded to a specific length.
+
+Unfortunately the default alignment differs between old and new style formatting. The old style defaults to right aligned while for new style it's left.
+
+Align right:
+Old
+
+'%10s' % ('test',)
+
+New
+
+'{:>10}'.format('test')
+
+Output
+
+      test
+
+Align left:
+Old
+
+'%-10s' % ('test',)
+
+New
+
+'{:10}'.format('test')
+
+'''
+'''
 #useful cmd tutorial https://pymotw.com/2/cmd/
 import cmd
 
@@ -28,6 +92,7 @@ class HelloWorld(cmd.Cmd):
 
 if __name__ == '__main__':
     HelloWorld().cmdloop()
+'''
 '''
 class HelloWorld(cmd.Cmd):
     """Simple command processor example."""
