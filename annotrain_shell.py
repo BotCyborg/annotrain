@@ -3,7 +3,7 @@ import os
 import cmd2 
 import argparse
 
-from workspace import WorkSpace
+from annotrain import AnnoTrain
 
 
 
@@ -22,7 +22,7 @@ class AnnoTrainShell(cmd2.Cmd):
     @cmd2.with_argparser(init_parser)
     def do_init(self,args):
 
-        self.ws = WorkSpace(p_name=args.projectname, data_root=args.dataroot)
+        self.ws = AnnoTrain(p_name=args.projectname, data_root=args.dataroot)
         print ( "projectname={0}\npath={1}".format(args.projectname,args.dataroot))
     
 if __name__ == '__main__':
