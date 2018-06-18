@@ -1,7 +1,7 @@
 # The Annotrain System
 
 A version tracking system for training data sets and models for machine
-learning systems.  
+learning projects.  
 For more details see the general description below.
 
 ## The Annotrain Shell
