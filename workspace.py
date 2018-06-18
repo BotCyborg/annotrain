@@ -13,30 +13,37 @@ from helperfunctions import *
 
 
 class WorkSpace:
-    def __init__(self):
+    def __init__(self, p_name=None, data_root=None):
         self.data_all = {}
         self.anno_all = {}
         self.model_all = {}
-        self.data_root = DEFAULT_DATA_ROOT_DIR
-    
+        self.data_root = AC(DEFAULT_DATA_ROOT_DIR,data_root) #DEFAULT_DATA_ROOT_DIR
+        self.p_name = AC(DEFAULT_PROJECT_NAME,p_name) # WORKSPACE_CONFIG_FILE+"-config.json"
+        self.p_name = self.p_name.replace(" ","_")
+        #[TODO] save here
+        #self.save()
 
-    def load(self,config_file=WORKSPACE_CONFIG_FILE):
+    def load(self,p_name): 
         
+        p_name = p_name.replace(" ","_")
+
+        config_file_name = p_name +"-config.json"
         #workspace json dictionary
         wjd = None
-        if not os.path.isfile(config_file) :
-            wjd = {}
-            return
+        if not os.path.isfile(config_file_name) :
+            return False
 
+        self.p_name = p_name 
 
-        with open(config_file) as fp:
+        with open(config_file_name) as fp:
             wjd = json.load(fp)
         
         self.data_root = wjd["DATA_ROOT_DIR"]
         self.load_data_all(wjd)
         self.load_anno_all(wjd)
         self.load_model_all(wjd)
-
+        
+        return True
     
 
     def get_annotation_by_name(self,name):
@@ -111,11 +118,13 @@ class WorkSpace:
     def save(self):
         wjd = {}
         wjd["DATA_ROOT_DIR"]= self.data_root
+        wjd["p_name"] = self.p_name
         
         wjd["data_all"] = self.all_data_as_jsondict()
         wjd["anno_all"] = self.all_anno_as_jsondict()
         wjd["model_all"] = self.all_model_as_jsondict()
-        with open(WORKSPACE_CONFIG_FILE,"w") as fp:
+
+        with open(self.p_name+"-config.json","w") as fp:
             json.dump(wjd, fp,indent=4, sort_keys=True)
 
         

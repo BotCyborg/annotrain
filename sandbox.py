@@ -4,7 +4,23 @@ import json
 from dateutil.parser import parse as datetime_parse
 from helperfunctions import *
 
+from cmd2 import Cmd 
 
+class REPL(Cmd):
+    prompt = "life> "
+    intro = "Welcome to the real world!"
+
+    def __init__(self):
+        Cmd.__init__(self)
+
+
+if __name__ == '__main__':
+    app = REPL()
+    app.cmdloop()
+    
+
+'''
+checking variable scope
 class apt :
     def __init__(self):
         print( "start")
@@ -18,6 +34,7 @@ class apt :
 a = apt()
 
 a.test()
+'''
 '''
 from cmd2 import Cmd 
 
