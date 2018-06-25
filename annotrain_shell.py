@@ -25,5 +25,8 @@ class AnnoTrainShell(cmd2.Cmd):
         self.ws = AnnoTrain(p_name=args.projectname, data_root=args.dataroot)
         print ( "projectname={0}\npath={1}".format(args.projectname,args.dataroot))
     
+    def do_save(self,args):
+        self.ws.save()
+    
 if __name__ == '__main__':
     AnnoTrainShell().cmdloop()
