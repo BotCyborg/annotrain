@@ -31,7 +31,7 @@ Type `help` to view existing commands and their short description.
 
 For example:
 
-    ats>: help load
+    ats>: help init
 
 shows the usages of the load command.
 
